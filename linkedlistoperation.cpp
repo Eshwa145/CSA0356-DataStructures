@@ -52,6 +52,16 @@ void deleteNode(Node** head, int data) {
     free(current);
 }
 
+Node* search(Node* head, int data) {
+    Node* temp = head;
+    while (temp != NULL) {
+        if (temp->data == data)
+            return temp;
+        temp = temp->next;
+    }
+    return NULL;
+}
+
 void displayList(Node* head) {
     Node* temp = head;
     while (temp != NULL) {
@@ -71,8 +81,14 @@ int main() {
     printf("Linked List: ");
     displayList(head);
     
+    Node* searchResult = search(head, 20);
+    if (searchResult != NULL)
+        printf("Element found: %d\n", searchResult->data);
+    else
+        printf("Element not found.\n");
+    
     deleteNode(&head, 20);
-    deleteNode(&head, 30);
+    
     printf("Linked List after deletion: ");
     displayList(head);
 
